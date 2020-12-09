@@ -14,11 +14,13 @@ import cx_Oracle
 class GetAllAccountAPIView(APIView):
     http_method_names = ['get', 'head']
 
+    # Lấy tất cả dữ liệu (none sql)
     # def get(self, request):
     #     list_account = TdmNhanvien.objects.all()
     #     serializer = GetAllAccountSerializer(list_account, many=True)
     #     return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+    # Lấy tất cả dữ liệu (có sql nhưng không Serialier)
     # def get(self, request):
     #     cursor = connection.cursor()
     #     sql = "select * from tdm_nhanvien"
@@ -26,6 +28,7 @@ class GetAllAccountAPIView(APIView):
     #     serializer = GetAllAccountSerializer(list_account, many=True)
     #     return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+    # Lấy tất cả dữ liệu (có sql và sử dụng Serialier)
     def get(self, request):
         sql = "select * from tdm_nhanvien"
         list_account = TdmNhanvien.objects.raw(sql)
