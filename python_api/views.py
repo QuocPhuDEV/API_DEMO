@@ -46,7 +46,7 @@ class GetAllAccountAPIView(APIView):
     def callNewUserWithParam(selt, maNV, tenVN):
         cursor = connection.cursor()
         manv = cursor.arrayvar(cx_Oracle.STRING, maNV)
-        manv = cursor.arrayvar(cx_Oracle.STRING, maNV)
-        ref = cursor.callproc("DJ_PHU_TEST2", [manv, tenVN])
+        tennv = cursor.arrayvar(cx_Oracle.STRING, tenVN)
+        ref = cursor.callproc("DJ_PHU_TEST2", [manv, tennv])
         cursor.close()
         return ref
