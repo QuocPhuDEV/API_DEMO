@@ -20,4 +20,5 @@ from python_api.views import GetAllAccountAPIView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', GetAllAccountAPIView.as_view()),
+    path('kho/', GetAllAccountAPIView.callNewUser),
 ]
