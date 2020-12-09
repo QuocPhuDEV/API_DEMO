@@ -6,7 +6,7 @@ from .models import TdmKho
 class GetAllAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = TdmNhanvien
-        fields = ['manv', 'tennv', 'mato']
+        fields = ['ngaytao', 'usertao', 'ngaycn', 'usercn', 'tennv']
 
     pass
 

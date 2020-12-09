@@ -19,18 +19,22 @@ class GetAllAccountAPIView(APIView):
     #     serializer = GetAllAccountSerializer(list_account, many=True)
     #     return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+    # def get(self, request):
+    #     cursor = connection.cursor()
+    #     sql = "select * from tdm_nhanvien"
+    #     list_account = cursor.execute(sql)
+    #     serializer = GetAllAccountSerializer(list_account, many=True)
+    #     return Response(data=serializer.data, status=status.HTTP_200_OK)
+
     def get(self, request):
-        cursor = connection.cursor()
-        sql = "select * from TDM_NHANVIEN"
-        data = cursor.execute(sql)
-        return Response(data=data, status=status.HTTP_200_OK)
+        sql = "select * from tdm_nhanvien"
+        list_account = TdmNhanvien.objects.raw(sql)
+        serializer = GetAllAccountSerializer(list_account, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     # Gọi procedure không tham số
     def callNewUser(request):
         cursor = connection.cursor()
-        # cursor.execute("call DJ_PHU_TEST1()")
-        # results = cursor.fetchall()
-        # return render(request, {'GetDataKho': results})
         ref = cursor.callproc("DJ_PHU_TEST1")
         cursor.close()
         return ref
