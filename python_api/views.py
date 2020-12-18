@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import TdmNhanvien
 from .serializers import GetAllAccountSerializer
+from django.http import JsonResponse
 
 from django.db import connection
 from django.shortcuts import render
@@ -33,7 +34,8 @@ class GetAllAccountAPIView(APIView):
         sql = "select * from tdm_nhanvien"
         list_account = TdmNhanvien.objects.raw(sql)
         serializer = GetAllAccountSerializer(list_account, many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+        response = Response(data=serializer.data, status=status.HTTP_200_OK)
+        return JsonResponse({'status': 200, 'msgKey': 00, 'msgMessage': 'Thanh cong', "data": response.data})
 
     # Gọi procedure không tham số
     def callNewUser(request):
